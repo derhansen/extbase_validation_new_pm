@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-02T17:31:31Z" product-name="validation_examples_new">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_validationexamplesnew_domain_model_addressdata">
+				<source>Addressdata</source>
+			</trans-unit>
+			<trans-unit id="tx_validationexamplesnew_domain_model_addressdata.firstname">
+				<source>Firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_validationexamplesnew_domain_model_addressdata.lastname">
+				<source>Lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_validationexamplesnew_domain_model_addressdata.street">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="tx_validationexamplesnew_domain_model_addressdata.streetnr">
+				<source>Streetnr</source>
+			</trans-unit>
+			<trans-unit id="tx_validationexamplesnew_domain_model_addressdata.zip">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="tx_validationexamplesnew_domain_model_addressdata.city">
+				<source>City</source>
+			</trans-unit>
+			
+		</body>
+	</file>
+</xliff>

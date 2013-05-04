@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-02T17:31:31Z" product-name="validation_examples_new">
+		<header/>
+		<body>
+
+			<trans-unit id="firstname.description">
+				<source>Firstname</source>
+			</trans-unit>
+			<trans-unit id="lastname.description">
+				<source>Lastname</source>
+			</trans-unit>
+			<trans-unit id="street.description">
+				<source>Street</source>
+			</trans-unit>
+			<trans-unit id="streetnr.description">
+				<source>Streetnr</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>City</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

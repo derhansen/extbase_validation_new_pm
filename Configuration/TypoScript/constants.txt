@@ -1,0 +1,14 @@
+plugin.tx_validationexamplesnew {
+	view {
+		# cat=plugin.tx_validationexamplesnew/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:validation_examples_new/Resources/Private/Templates/
+		# cat=plugin.tx_validationexamplesnew/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:validation_examples_new/Resources/Private/Partials/
+		# cat=plugin.tx_validationexamplesnew/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:validation_examples_new/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_validationexamplesnew//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
