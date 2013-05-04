@@ -43,6 +43,14 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	protected $addressdataRepository;
 
 	/**
+	 * API Service
+	 *
+	 * @var \derhansen\ValidationExamplesNew\Service\ExternalApiService
+	 * @inject
+	 */
+	protected $apiService;
+
+	/**
 	 * Step1
 	 *
 	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data
@@ -50,7 +58,7 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function step1Action(\derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data = NULL) {
 		/* Check if step1data is available in session */
-		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step1data')) {
+		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step1data') && $step1data == NULL) {
 			$step1data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step1data'));
 		}
 
@@ -77,9 +85,12 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function step2Action(\derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data = NULL) {
 		/* Check if step2data is available in session */
-		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step2data')) {
+		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step2data') && $step2data == NULL) {
 			$step2data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step2data'));
 		}
+
+		/* Set external validations errors if available */
+		$this->setApiValidationErrors('step2');
 
 		$this->view->assign('step2data', $step2data);
 	}
@@ -105,9 +116,12 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function step3Action(\derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data = NULL) {
 		/* Check if step3data is available in session */
-		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step3data')) {
+		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step3data') && $step3data == NULL) {
 			$step3data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step3data'));
 		}
+
+		/* Set external validations errors if available */
+		$this->setApiValidationErrors('step3');
 
 		$this->view->assign('step3data', $step3data);
 	}
@@ -131,6 +145,23 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function createAction() {
 		$addressdata = $this->getAddressdataFromSession();
+
+		/* get validation results from API */
+		$apiresults = $this->apiService->validateMultipleSteps($addressdata);
+		if (count($apiresults) > 0) {
+			/* Save results to a session variable */
+			$GLOBALS['TSFE']->fe_user->setKey('ses', 'apiresults', $apiresults);
+			$GLOBALS['TSFE']->fe_user->storeSessionData();
+
+			/* Redirect to step with validation errors */
+			if (array_key_exists('step2', $apiresults)) {
+				$this->redirect('step2');
+			}
+			if (array_key_exists('step3', $apiresults)) {
+				$this->redirect('step3');
+			}
+		}
+
 		$this->addressdataRepository->add($addressdata);
 		$this->cleanUpSessionData();
 
@@ -173,7 +204,29 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		$GLOBALS['TSFE']->fe_user->setKey('ses', 'step1data', '');
 		$GLOBALS['TSFE']->fe_user->setKey('ses', 'step2data', '');
 		$GLOBALS['TSFE']->fe_user->setKey('ses', 'step3data', '');
+		$GLOBALS['TSFE']->fe_user->setKey('ses', 'apiresults', '');
 		$GLOBALS['TSFE']->fe_user->storeSessionData();
+	}
+
+	/**
+	 * Sets validation errors for fields in the given step
+	 *
+	 * @param string $step The step
+	 * @return void
+	 */
+	protected function setApiValidationErrors($step) {
+		$apiresults = $GLOBALS['TSFE']->fe_user->getKey('ses', 'apiresults');
+		if (array_key_exists($step, $apiresults)) {
+			/* Set Form Errors manually  - get results from property mapper and add new errors */
+			$result = $this->getControllerContext()->getRequest()->getOriginalRequestMappingResults();
+
+			/* Add validation errors */
+			foreach ($apiresults[$step] as $key => $value) {
+				$error = new \TYPO3\CMS\Extbase\Validation\Error($apiresults[$step][$key], time());
+				$result->forProperty($step . 'data.' . $key)->addError($error);
+			}
+			$this->getControllerContext()->getRequest()->setOriginalRequestMappingResults($result);
+		}
 	}
 
 }
