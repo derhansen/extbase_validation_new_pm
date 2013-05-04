@@ -1,0 +1,10 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+    <h1>Step1</h1>
+
+    <f:form action="step1redirect"  name="step1data" object="{step1data}">
+        <f:render partial="MultipleSteps/Step1Fields" />
+        <f:form.submit value="Next" />
+    </f:form>
+</f:section>
