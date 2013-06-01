@@ -222,7 +222,8 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 			/* Add validation errors */
 			foreach ($apiresults[$step] as $key => $value) {
-				$error = new \TYPO3\CMS\Extbase\Validation\Error($apiresults[$step][$key], time());
+				$error = $this->objectManager->get('TYPO3\CMS\Extbase\Validation\Error',
+					$apiresults[$step][$key], time());
 				$result->forProperty($step . 'data.' . $key)->addError($error);
 			}
 			$this->getControllerContext()->getRequest()->setOriginalRequestMappingResults($result);

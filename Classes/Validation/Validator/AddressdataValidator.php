@@ -52,6 +52,23 @@ class AddressdataValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 	}
 
 	/**
+	 * Object Manager
+	 *
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
+	 */
+	protected $objectManager;
+
+	/**
+	 * Injects the object manager
+	 *
+	 * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
+	 * @return void
+	 */
+	public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
+		$this->objectManager = $objectManager;
+	}
+
+	/**
 	 * Validates the given value
 	 *
 	 * @param mixed $value
@@ -61,12 +78,14 @@ class AddressdataValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 		$apiValidationResult = $this->apiService->validateAddressData($value);
 		$success = TRUE;
 		if ($apiValidationResult['zip']) {
-			$error = new \TYPO3\CMS\Extbase\Validation\Error($apiValidationResult['zip'], time());
+			$error = $this->objectManager->get('TYPO3\CMS\Extbase\Validation\Error',
+				$apiValidationResult['zip'], time());
 			$this->result->forProperty('zip')->addError($error);
 			$success = FALSE;
 		}
 		if ($apiValidationResult['city']) {
-			$error = new \TYPO3\CMS\Extbase\Validation\Error($apiValidationResult['city'], time());
+			$error = $this->objectManager->get('TYPO3\CMS\Extbase\Validation\Error',
+				$apiValidationResult['city'], time());
 			$this->result->forProperty('city')->addError($error);
 			$success = FALSE;
 		}
