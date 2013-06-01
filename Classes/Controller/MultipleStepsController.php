@@ -184,7 +184,8 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		/** @var \derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data */
 		$step3data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step3data'));
 
-		$addressData = new \derhansen\ValidationExamplesNew\Domain\Model\Addressdata();
+		/** @var \derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressData */
+		$addressData = $this->objectManager->get('derhansen\ValidationExamplesNew\Domain\Model\Addressdata');
 		$addressData->setFirstname($step1data->getFirstname());
 		$addressData->setLastname($step1data->getLastname());
 		$addressData->setStreet($step2data->getStreet());
@@ -222,7 +223,7 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 			/* Add validation errors */
 			foreach ($apiresults[$step] as $key => $value) {
-				$error = $this->objectManager->get('TYPO3\CMS\Extbase\Validation\Error',
+				$error = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\Error',
 					$apiresults[$step][$key], time());
 				$result->forProperty($step . 'data.' . $key)->addError($error);
 			}

@@ -78,13 +78,13 @@ class AddressdataValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 		$apiValidationResult = $this->apiService->validateAddressData($value);
 		$success = TRUE;
 		if ($apiValidationResult['zip']) {
-			$error = $this->objectManager->get('TYPO3\CMS\Extbase\Validation\Error',
+			$error = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\Error',
 				$apiValidationResult['zip'], time());
 			$this->result->forProperty('zip')->addError($error);
 			$success = FALSE;
 		}
 		if ($apiValidationResult['city']) {
-			$error = $this->objectManager->get('TYPO3\CMS\Extbase\Validation\Error',
+			$error = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Validation\\Error',
 				$apiValidationResult['city'], time());
 			$this->result->forProperty('city')->addError($error);
 			$success = FALSE;
