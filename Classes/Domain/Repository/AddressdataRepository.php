@@ -1,5 +1,5 @@
 <?php
-namespace derhansen\ValidationExamplesNew\Domain\Repository;
+namespace Derhansen\ValidationExamplesNew\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice

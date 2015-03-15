@@ -1,5 +1,5 @@
 <?php
-namespace derhansen\ValidationExamplesNew\Validation\Validator;
+namespace Derhansen\ValidationExamplesNew\Validation\Validator;
 
 	/***************************************************************
 	 *  Copyright notice
@@ -37,17 +37,17 @@ class AddressdataValidator extends \TYPO3\CMS\Extbase\Validation\Validator\Abstr
 	/**
 	 * API Service
 	 *
-	 * @var \derhansen\ValidationExamplesNew\Service\ExternalApiService
+	 * @var \Derhansen\ValidationExamplesNew\Service\ExternalApiService
 	 */
 	protected $apiService;
 
 	/**
 	 * Injects the API Service
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Service\ExternalApiService $apiService
+	 * @param \Derhansen\ValidationExamplesNew\Service\ExternalApiService $apiService
 	 * @return void
 	 */
-	public function injectApiService(\derhansen\ValidationExamplesNew\Service\ExternalApiService $apiService) {
+	public function injectApiService(\Derhansen\ValidationExamplesNew\Service\ExternalApiService $apiService) {
 		$this->apiService = $apiService;
 	}
 

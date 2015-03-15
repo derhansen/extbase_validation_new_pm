@@ -4,7 +4,7 @@ if (!defined('TYPO3_MODE')) {
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'derhansen.' . $_EXTKEY,
+	'Derhansen.' . $_EXTKEY,
 	'Pi1',
 	array(
 		'Addressdata' => 'new,create',
@@ -16,7 +16,7 @@ if (!defined('TYPO3_MODE')) {
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'derhansen.' . $_EXTKEY,
+	'Derhansen.' . $_EXTKEY,
 	'Pi2',
 	array(
 		'MultipleSteps' => 'step1, step2, step3, step1redirect, step2redirect, step3redirect, create',

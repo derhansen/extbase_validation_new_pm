@@ -1,5 +1,5 @@
 <?php
-namespace derhansen\ValidationExamplesNew\Service;
+namespace Derhansen\ValidationExamplesNew\Service;
 /***************************************************************
  *  Copyright notice
  *
@@ -37,10 +37,10 @@ class ExternalApiService implements \TYPO3\CMS\Core\SingletonInterface {
 	 * Simulates validation if addressdata. If validation erros found, an array of fields and
 	 * error messages are returned.
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata
 	 * @return array
 	 */
-	public function validateAddressData(\derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata) {
+	public function validateAddressData(\Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata) {
 		$errors = array();
 		if ($addressdata->getZip() == 20095 && $addressdata->getCity() != 'Hamburg') {
 			$errors['zip'] = 'ZIP Code and city do not match';
@@ -53,10 +53,10 @@ class ExternalApiService implements \TYPO3\CMS\Core\SingletonInterface {
 	 * Simulates validation of addressdata entered in the multiple steps form.
 	 * Returns an array of validation errors for each step of the multiple steps form
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata
 	 * @return array
 	 */
-	public function validateMultipleSteps(\derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata) {
+	public function validateMultipleSteps(\Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressdata) {
 		$errors = array();
 		if ($addressdata->getStreet() == 'Elbstraße' && $addressdata->getStreetnr() > 145) {
 			$errors['step2']['streetnr'] = 'Streetnr not valid for this street';

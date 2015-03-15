@@ -1,5 +1,5 @@
 <?php
-namespace derhansen\ValidationExamplesNew\Controller;
+namespace Derhansen\ValidationExamplesNew\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -37,7 +37,7 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * addressdataRepository
 	 *
-	 * @var \derhansen\ValidationExamplesNew\Domain\Repository\AddressdataRepository
+	 * @var \Derhansen\ValidationExamplesNew\Domain\Repository\AddressdataRepository
 	 * @inject
 	 */
 	protected $addressdataRepository;
@@ -45,7 +45,7 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * API Service
 	 *
-	 * @var \derhansen\ValidationExamplesNew\Service\ExternalApiService
+	 * @var \Derhansen\ValidationExamplesNew\Service\ExternalApiService
 	 * @inject
 	 */
 	protected $apiService;
@@ -53,10 +53,10 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * Step1
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data
-	 * @dontvalidate $step1data
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data
+	 * @ignorevalidation $step1data
 	 */
-	public function step1Action(\derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data = NULL) {
+	public function step1Action(\Derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data = NULL) {
 		/* Check if step1data is available in session */
 		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step1data') && $step1data == NULL) {
 			$step1data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step1data'));
@@ -68,9 +68,9 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * Step1 redirect action
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data
 	 */
-	public function step1redirectAction(\derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data) {
+	public function step1redirectAction(\Derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data) {
 		$GLOBALS['TSFE']->fe_user->setKey('ses', 'step1data', serialize($step1data));
 		$GLOBALS['TSFE']->fe_user->storeSessionData();
 
@@ -80,10 +80,10 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * Step2
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data
-	 * @dontvalidate $step2data
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data
+	 * @ignorevalidation $step2data
 	 */
-	public function step2Action(\derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data = NULL) {
+	public function step2Action(\Derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data = NULL) {
 		/* Check if step2data is available in session */
 		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step2data') && $step2data == NULL) {
 			$step2data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step2data'));
@@ -98,9 +98,9 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * Step2 redirect action
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data
 	 */
-	public function step2redirectAction(\derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data) {
+	public function step2redirectAction(\Derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data) {
 		$GLOBALS['TSFE']->fe_user->setKey('ses', 'step2data', serialize($step2data));
 		$GLOBALS['TSFE']->fe_user->storeSessionData();
 
@@ -111,10 +111,10 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * Step3
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data
-	 * @dontvalidate $step3data
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data
+	 * @ignorevalidation $step3data
 	 */
-	public function step3Action(\derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data = NULL) {
+	public function step3Action(\Derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data = NULL) {
 		/* Check if step3data is available in session */
 		if ($GLOBALS['TSFE']->fe_user->getKey('ses', 'step3data') && $step3data == NULL) {
 			$step3data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step3data'));
@@ -129,9 +129,9 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	/**
 	 * Step3 redirect action
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data
 	 */
-	public function step3redirectAction(\derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data) {
+	public function step3redirectAction(\Derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data) {
 		$GLOBALS['TSFE']->fe_user->setKey('ses', 'step3data', serialize($step3data));
 		$GLOBALS['TSFE']->fe_user->storeSessionData();
 
@@ -172,20 +172,20 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * Collects the addressdata from the multiple steps form stored in session variables
 	 * and returns an addressdata object.
 	 *
-	 * @return \derhansen\ValidationExamplesNew\Domain\Model\Addressdata
+	 * @return \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata
 	 */
 	protected function getAddressdataFromSession() {
-		/** @var \derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data */
+		/** @var \Derhansen\ValidationExamplesNew\Domain\Model\Step1Data $step1data */
 		$step1data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step1data'));
 
-		/** @var \derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data */
+		/** @var \Derhansen\ValidationExamplesNew\Domain\Model\Step2Data $step2data */
 		$step2data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step2data'));
 
-		/** @var \derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data */
+		/** @var \Derhansen\ValidationExamplesNew\Domain\Model\Step3Data $step3data */
 		$step3data = unserialize($GLOBALS['TSFE']->fe_user->getKey('ses', 'step3data'));
 
-		/** @var \derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressData */
-		$addressData = $this->objectManager->get('derhansen\ValidationExamplesNew\Domain\Model\Addressdata');
+		/** @var \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $addressData */
+		$addressData = $this->objectManager->get('Derhansen\ValidationExamplesNew\Domain\Model\Addressdata');
 		$addressData->setFirstname($step1data->getFirstname());
 		$addressData->setLastname($step1data->getLastname());
 		$addressData->setStreet($step2data->getStreet());
@@ -217,7 +217,7 @@ class MultipleStepsController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	protected function setApiValidationErrors($step) {
 		$apiresults = $GLOBALS['TSFE']->fe_user->getKey('ses', 'apiresults');
-		if (array_key_exists($step, $apiresults)) {
+		if (is_array($apiresults) && array_key_exists($step, $apiresults)) {
 			/* Set Form Errors manually  - get results from property mapper and add new errors */
 			$result = $this->getControllerContext()->getRequest()->getOriginalRequestMappingResults();
 

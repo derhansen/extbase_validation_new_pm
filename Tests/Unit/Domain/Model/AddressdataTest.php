@@ -1,6 +1,6 @@
 <?php
 
-namespace derhansen\ValidationExamplesNew\Tests;
+namespace Derhansen\ValidationExamplesNew\Tests;
 /***************************************************************
  *  Copyright notice
  *
@@ -26,7 +26,7 @@ namespace derhansen\ValidationExamplesNew\Tests;
  ***************************************************************/
 
 /**
- * Test case for class \derhansen\ValidationExamplesNew\Domain\Model\Addressdata.
+ * Test case for class \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata.
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -39,12 +39,12 @@ namespace derhansen\ValidationExamplesNew\Tests;
  */
 class AddressdataTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
 	/**
-	 * @var \derhansen\ValidationExamplesNew\Domain\Model\Addressdata
+	 * @var \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new \derhansen\ValidationExamplesNew\Domain\Model\Addressdata();
+		$this->fixture = new \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata();
 	}
 
 	public function tearDown() {

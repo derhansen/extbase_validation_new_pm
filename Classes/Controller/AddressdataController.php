@@ -1,5 +1,5 @@
 <?php
-namespace derhansen\ValidationExamplesNew\Controller;
+namespace Derhansen\ValidationExamplesNew\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -37,7 +37,7 @@ class AddressdataController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	/**
 	 * addressdataRepository
 	 *
-	 * @var \derhansen\ValidationExamplesNew\Domain\Repository\AddressdataRepository
+	 * @var \Derhansen\ValidationExamplesNew\Domain\Repository\AddressdataRepository
 	 * @inject
 	 */
 	protected $addressdataRepository;
@@ -45,22 +45,22 @@ class AddressdataController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	/**
 	 * action new
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata
-	 * @dontvalidate $newAddressdata
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata
+	 * @ignorevalidation $newAddressdata
 	 * @return void
 	 */
-	public function newAction(\derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata = NULL) {
+	public function newAction(\Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata = NULL) {
 		$this->view->assign('newAddressdata', $newAddressdata);
 	}
 
 	/**
 	 * action create
 	 *
-	 * @param \derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata
-	 * @validate $newAddressdata \derhansen\ValidationExamplesNew\Validation\Validator\AddressdataValidator
+	 * @param \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata
+	 * @validate $newAddressdata \Derhansen\ValidationExamplesNew\Validation\Validator\AddressdataValidator
 	 * @return void
 	 */
-	public function createAction(\derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata) {
+	public function createAction(\Derhansen\ValidationExamplesNew\Domain\Model\Addressdata $newAddressdata) {
 		$this->addressdataRepository->add($newAddressdata);
 		$this->view->assign('message', 'Your new Addressdata was created.');
 	}

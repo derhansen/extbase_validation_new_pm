@@ -1,5 +1,5 @@
 <?php
-namespace derhansen\ValidationExamplesNew\Tests;
+namespace Derhansen\ValidationExamplesNew\Tests;
 /***************************************************************
  *  Copyright notice
  *
@@ -43,7 +43,7 @@ class AddressdataControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCa
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new \derhansen\ValidationExamplesNew\Domain\Model\Addressdata();
+		$this->fixture = new \Derhansen\ValidationExamplesNew\Domain\Model\Addressdata();
 	}
 
 	public function tearDown() {
